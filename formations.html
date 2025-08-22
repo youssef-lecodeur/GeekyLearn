@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formations | GeekyLearn</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div id="userInfo"></div>
+    <div id="createFormation" style="display: none">
+      <h3>Créer une formation</h3>
+      <form id="formationForm">
+        <input type="text" name="titre" placeholder="Titre" required />
+        <textarea
+          name="description"
+          placeholder="Description"
+          required
+        ></textarea>
+        <input type="number" name="prix" placeholder="Prix (TND)" required />
+        <button type="submit">Créer</button>
+      </form>
+    </div>
+    <h3>Formations créées par la communauté</h3>
+    <ul id="formationsList"></ul>
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Nos Formations</h1>
+          <p>
+            Explorez notre catalogue complet de formations gratuites pour tous
+            les niveaux et tous les profils.
+          </p>
+        </div>
+      </section>
+
+      <section class="courses">
+        <h2>Catalogue des Formations</h2>
+        <div class="courses-grid">
+          <div class="course-card">
+            <h4>Développement Web de A à Z</h4>
+            <p>
+              Maîtrisez HTML, CSS, JavaScript, Node.js et créez des sites
+              dynamiques.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Introduction à l'Intelligence Artificielle</h4>
+            <p>
+              Comprenez les bases du machine learning et créez vos premiers
+              modèles.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Les Secrets du Design UX/UI</h4>
+            <p>
+              Concevez des interfaces intuitives et esthétiques pour tous les
+              supports.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Python pour Débutants</h4>
+            <p>
+              Apprenez la programmation avec Python, le langage polyvalent et
+              accessible.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>JavaScript Avancé</h4>
+            <p>
+              Maîtrisez les concepts modernes : ES6, asynchronisme, API,
+              frameworks.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Node.js & Express</h4>
+            <p>Créez des serveurs web performants et des API REST robustes.</p>
+          </div>
+          <div class="course-card">
+            <h4>React : De zéro à héros</h4>
+            <p>Développez des applications web interactives avec React.js.</p>
+          </div>
+          <div class="course-card">
+            <h4>SQL & Bases de Données</h4>
+            <p>
+              Manipulez les données, créez des requêtes et optimisez vos bases.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Cybersécurité pour Tous</h4>
+            <p>
+              Protégez vos données et comprenez les enjeux de la sécurité
+              numérique.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Développement Mobile avec Flutter</h4>
+            <p>Créez des applications mobiles multiplateformes rapidement.</p>
+          </div>
+          <div class="course-card">
+            <h4>Linux & Administration Système</h4>
+            <p>Maîtrisez les commandes et la gestion d’un serveur Linux.</p>
+          </div>
+          <div class="course-card">
+            <h4>Gestion de Projet Agile</h4>
+            <p>
+              Découvrez Scrum, Kanban et les méthodes agiles pour vos projets
+              tech.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Machine Learning avec Python</h4>
+            <p>
+              Implémentez des algorithmes d’apprentissage automatique concrets.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Docker & DevOps</h4>
+            <p>Automatisez le déploiement et la gestion de vos applications.</p>
+          </div>
+          <div class="course-card">
+            <h4>WordPress : Créez votre site</h4>
+            <p>
+              Construisez et personnalisez un site web professionnel sans coder.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Data Science pour Débutants</h4>
+            <p>Analysez des données et créez des visualisations impactantes.</p>
+          </div>
+          <div class="course-card">
+            <h4>PHP & Développement Backend</h4>
+            <p>
+              Construisez des sites dynamiques et des API robustes avec PHP.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Création de Jeux Vidéo avec Unity</h4>
+            <p>
+              Apprenez les bases du game design et développez votre premier jeu.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Responsive Web Design</h4>
+            <p>
+              Adaptez vos sites à tous les écrans et améliorez l’expérience
+              utilisateur.
+            </p>
+          </div>
+          <div class="course-card">
+            <h4>Automatisation avec Python</h4>
+            <p>
+              Automatisez des tâches et gagnez du temps grâce à des scripts
+              efficaces.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+const user = JSON.parse(localStorage.getItem('user') || '{}');
+document.getElementById('userInfo').textContent = user.nom ? `Connecté en tant que ${user.nom} (${user.role})` : '';
+if (user.role === 'formateur') document.getElementById('createFormation').style.display = 'block';
+
+async function loadFormations() {
+  const res = await fetch('/formations');
+  const json = await res.json();
+  const ul = document.getElementById('formationsList');
+  ul.innerHTML = '';
+  json.formations.forEach(f => {
+    const li = document.createElement('li');
+    li.textContent = `${f.titre} - ${f.description} - ${f.prix} TND (par ${f.formateur})`;
+    // Bouton suppression si admin ou créateur
+    if (user.role === 'admin' || (user.role === 'formateur' && user.id === f.formateur_id)) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Supprimer';
+      btn.onclick = async () => {
+        await fetch('/formations/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ formationId: f.id, userId: user.id, isAdmin: user.role === 'admin' })
+        });
+        loadFormations();
+      };
+      li.appendChild(btn);
+    }
+    ul.appendChild(li);
+  });
+}
+loadFormations();
+
+document.getElementById('formationForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  await fetch('/formations', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      titre: data.get('titre'),
+      description: data.get('description'),
+      prix: data.get('prix'),
+      formateur_id: user.id
+    })
+  });
+  e.target.reset();
+  loadFormations();
+});
+</script>
+  </body>
+</html>

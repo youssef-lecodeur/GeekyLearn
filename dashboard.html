@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - GeekyLearn</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar"></div>
+
+    <main class="dashboard-main">
+        <!-- En-tête du tableau de bord -->
+        <header class="dashboard-header">
+            <h1>Mon Tableau de Bord</h1>
+            <p class="welcome-message">Bienvenue, <span id="dashboard-username"></span> ! Prêt à apprendre quelque chose de nouveau aujourd'hui ?</p>
+        </header>
+
+        <!-- Section des statistiques rapides -->
+        <section class="stats-overview">
+            <div class="stat-card">
+                <span class="stat-number">3</span>
+                <p class="stat-label">Formations en cours</p>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">1</span>
+                <p class="stat-label">Formations terminées</p>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">1</span>
+                <p class="stat-label">Certificats obtenus</p>
+            </div>
+        </section>
+
+        <!-- Section des formations en cours -->
+        <section class="my-courses">
+            <h2>Reprendre où vous en étiez</h2>
+            <div class="course-list">
+                <!-- Exemple de carte de formation -->
+                <div class="course-item">
+                    <h3>Développement Web de A à Z</h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 65%;"></div>
+                    </div>
+                    <span class="progress-text">65% complété</span>
+                    <a href="#" class="cta-button">Reprendre</a>
+                </div>
+                <!-- Autre exemple -->
+                <div class="course-item">
+                    <h3>Introduction à l'Intelligence Artificielle</h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 20%;"></div>
+                    </div>
+                    <span class="progress-text">20% complété</span>
+                    <a href="#" class="cta-button">Reprendre</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section des accès rapides -->
+        <section class="quick-actions">
+            <h2>Accès Rapide</h2>
+            <div class="actions-grid">
+                <a href="#" class="action-card">Mon Compte</a>
+                <a href="#" class="action-card">Mes Certificats</a>
+                <a href="#" class="action-card">Aide & Support</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

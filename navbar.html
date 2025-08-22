@@ -1,0 +1,37 @@
+<nav>
+        <ul style="list-style: none; display: flex; align-items: center; gap: 20px; padding: 0; margin: 0;">
+            <li>
+                <a href="accueil.html" style="text-decoration: none;">
+                    <!-- Le logo principal du site -->
+                    <img src="logo.jpg" alt="Logo" style="height: 60px; vertical-align: middle;">
+                </a>
+            </li>
+            <li><a href="accueil.html" style="text-decoration: none; color: white;">Accueil</a></li>
+            <!-- Les liens Connexion/Inscription sont de retour -->
+            <li id="nav-login"><a href="#" id="login-link" style="text-decoration: none; color: white;">Connexion</a></li>
+            <li id="nav-register"><a href="#" id="register-link" style="text-decoration: none; color: white;">S'inscrire</a></li>
+            <li><a href="formations.html" style="text-decoration: none; color: white;">Formations</a></li>
+            
+            <!-- Le menu utilisateur, caché par défaut -->
+            <li id="user-menu" style="display: none;">
+                <span style="display: inline-flex; align-items: center; cursor: pointer;">
+                    <!-- L'image de profil de l'utilisateur connecté -->
+                    <img src="plavatar.png" alt="Profil" id="navbar-profile-pic" style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
+                    <a href="#" id="user-name" style="text-decoration: none; color: white;"></a>
+                    <img id="menu-arrow" src="flechemenu.png" alt="Menu déroulant">
+                </span>
+                <ul>
+                    <li><a href="modifcompte.html">Mon compte</a></li>
+                    <li><a href="dashboard.html">Tableau de bord</a></li>
+                    <li><a href="mesformations.html">Mes formations</a></li>
+                    <li><a href="mescertificats.html">Mes certificats</a></li>
+                    <li><a href="mespoi.html">Mes centres d'intérêt</a></li>
+                    <li><a href="#" id="logout-link">Déconnexion</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html" style="text-decoration: none; color: white;">Contact</a></li>
+            <li style="margin-left:auto;">
+              <img id="theme-icon" src="clair.png" style="width:32px;cursor:pointer;">
+            </li>
+        </ul>
+    </nav>

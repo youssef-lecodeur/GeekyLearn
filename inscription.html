@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription - GeekyLearn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    
+    <h1>Inscription</h1>
+    <form id="registerForm" enctype="multipart/form-data">
+        <div>
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+        </div>
+        <div>
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+        </div>
+        <div>
+            <label for="username">Nom d'utilisateur :</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label><input type="radio" name="role" value="apprenant" checked> Être formé</label>
+            <label><input type="radio" name="role" value="candidat_formateur"> Devenir formateur</label>
+        </div>
+        <div>
+            <label for="profilePic">Photo de profil (optionnel) :</label>
+            <input type="file" id="profilePic" name="profilePic" accept="image/*">
+        </div>
+        <div id="cvField" style="display:none;">
+            <label for="cv">CV (PDF) :</label>
+            <input type="file" id="cv" name="cv" accept="application/pdf">
+        </div>
+        <button type="submit">S'inscrire</button>
+    </form>
+
+    <script>
+const radios = document.querySelectorAll('input[name="role"]');
+const cvField = document.getElementById('cvField');
+radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+        cvField.style.display = (document.querySelector('input[name="role"]:checked').value === 'candidat_formateur') ? 'block' : 'none';
+    });
+});
+
+// Soumission du formulaire avec gestion du CV
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    const role = data.get('role');
+    // 1ère étape : inscription
+    const res = await fetch('/register', { method: 'POST', body: data });
+    const json = await res.json();
+    if (json.success && role === 'candidat_formateur') {
+        // 2e étape : upload CV
+        const cvInput = document.getElementById('cv');
+        if (!cvInput.files[0]) {
+            alert("Veuillez joindre un CV PDF.");
+            return;
+        }
+        const cvData = new FormData();
+        cvData.append('userId', json.userId);
+        cvData.append('cv', cvInput.files[0]);
+        const res2 = await fetch('/apply-formateur', { method: 'POST', body: cvData });
+        const json2 = await res2.json();
+        alert(json2.message);
+    } else {
+        alert(json.message);
+    }
+});
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

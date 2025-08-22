@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeekyLearn</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    
+    <main>
+        <!-- Section 1: Héros -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Maîtrisez les Compétences de Demain, Aujourd'hui.</h1>
+                <p>Plongez dans un univers de formations gratuites conçues par des passionnés, pour des passionnés. Apprenez à votre rythme, où que vous soyez, et transformez votre curiosité en expertise.</p>
+                <a href="formations.html" class="cta-button">Explorer nos formations</a>
+            </div>
+        </section>
+
+        <!-- Section 2: Pourquoi nous choisir ? -->
+        <section class="features">
+            <h2>Votre Savoir, Sans Limites et Sans Frais.</h2>
+            <p>Chez GeekyLearn, nous croyons que la connaissance est un droit, pas un luxe. Voici ce qui nous rend uniques :</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>Accès 100% Gratuit</h3>
+                    <p>Le savoir n'a pas de prix. Accédez à l'intégralité de notre catalogue de formations sans jamais sortir votre carte de crédit. Le seul investissement, c'est votre temps.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Apprentissage par la Pratique</h3>
+                    <p>Oubliez la théorie ennuyeuse. Nos modules sont axés sur des projets concrets et des défis stimulants pour que vous puissiez appliquer immédiatement ce que vous apprenez.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Certification à la Clé</h3>
+                    <p>Validez vos nouvelles compétences ! À la fin de chaque parcours, prouvez votre maîtrise et obtenez une certification GeekyLearn pour enrichir votre CV et booster votre carrière.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Présentation des formations -->
+        <section class="courses">
+            <h2>Trouvez le Parcours Fait pour Vous</h2>
+            <p>Que vous soyez un débutant curieux ou un expert cherchant à se perfectionner, nous avons la formation qu'il vous faut.</p>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <h4>Développement Web de A à Z</h4>
+                    <p>Devenez un développeur full-stack. Maîtrisez HTML, CSS, JavaScript, Node.js et construisez des applications web complètes.</p>
+                </div>
+                <div class="course-card">
+                    <h4>Introduction à l'Intelligence Artificielle</h4>
+                    <p>Découvrez les mystères de l'IA. Comprenez les concepts de machine learning et créez vos premiers modèles prédictifs.</p>
+                </div>
+                <div class="course-card">
+                    <h4>Les Secrets du Design UX/UI</h4>
+                    <p>Apprenez à créer des interfaces non seulement belles, mais aussi intuitives. Pensez comme un utilisateur et concevez des expériences mémorables.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Focus sur la Certification -->
+        <section class="certification">
+            <div class="certification-content">
+                <h2>Une Certification qui Fait la Différence</h2>
+                <p>Plus qu'un simple diplôme, notre certification est la preuve tangible de votre engagement et de votre expertise. Reconnue par notre communauté de professionnels, elle atteste que vous avez non seulement suivi un cours, mais que vous avez surtout <strong>maîtrisé</strong> les compétences enseignées.</p>
+                <ul>
+                    <li>Validez votre savoir-faire.</li>
+                    <li>Partagez-la sur votre profil LinkedIn.</li>
+                    <li>Démarquez-vous auprès des recruteurs.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 5: Appel à l'action final -->
+        <section class="final-cta">
+            <h2>Prêt à Lancer Votre Aventure ?</h2>
+            <p>Des milliers d'apprenants transforment déjà leur avenir avec GeekyLearn. Le prochain, c'est vous.</p>
+            <a href="#" class="cta-button register-cta">S'inscrire Gratuitement</a>
+        </section>
+    </main>
+
+    <!-- Modale pour l'authentification -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <!-- Formulaire de Connexion -->
+            <div id="login-form-container">
+                <h2>Connexion</h2>
+                <form id="login-form">
+                    <label for="login-username">Nom d'utilisateur :</label>
+                    <input type="text" id="login-username" name="username" required>
+                    <label for="login-password">Mot de passe :</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <button type="submit">Se connecter</button>
+                </form>
+            </div>
+            <!-- Formulaire d'Inscription -->
+            <div id="register-form-container" style="display:none;">
+                <h2>Inscription</h2>
+                <!-- NOUVEAU: enctype est crucial pour l'upload de fichiers -->
+                <form id="register-form" enctype="multipart/form-data">
+                    <label for="register-nom">Nom :</label>
+                    <input type="text" id="register-nom" name="nom" required>
+                    <label for="register-prenom">Prénom :</label>
+                    <input type="text" id="register-prenom" name="prenom" required>
+                    <label for="register-username">Nom d'utilisateur :</label>
+                    <input type="text" id="register-username" name="username" required>
+                    <label for="register-password">Mot de passe :</label>
+                    <input type="password" id="register-password" name="password" required>
+                    <!-- NOUVEAU: Champ pour la photo de profil -->
+                    <label for="profile-pic">Photo de profil (optionnel) :</label>
+                    <input type="file" id="profile-pic" name="profilePic" accept="image/*">
+                    <button type="submit">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

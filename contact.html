@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | GeekyLearn</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar"></div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Contactez-nous</h1>
+                <p>Une question, une suggestion ou besoin d’aide ? Notre équipe est là pour vous répondre !</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Formulaire de Contact</h2>
+            <form id="contact-form" style="max-width:500px;margin:0 auto;text-align:left;">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required style="width:100%;margin-bottom:15px;">
+                
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required style="width:100%;margin-bottom:15px;">
+                
+                <label for="sujet">Sujet :</label>
+                <input type="text" id="sujet" name="sujet" required style="width:100%;margin-bottom:15px;">
+                
+                <label for="message">Message :</label>
+                <textarea id="message" name="message" rows="5" required style="width:100%;margin-bottom:20px;"></textarea>
+                
+                <button type="submit" class="cta-button">Envoyer</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Nos Coordonnées</h2>
+            <div style="text-align:center;">
+                <p>Email : <a href="mailto:youssef.benmradpmf@gmail.com">youssef.benmradpmf@gmail.com</a></p>
+                <p>Téléphone : +216 26 845 398</p>
+                <p>Adresse : Tunis</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>

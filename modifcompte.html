@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier mon compte - GeekyLearn</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Modifier mon compte</h1>
+                <p>Modifiez vos informations personnelles et vos préférences ci-dessous.</p>
+            </div>
+        </section>
+        <section class="certification">
+            <div class="certification-content">
+                <form id="modif-compte-form" enctype="multipart/form-data" style="max-width:500px;margin:auto;">
+                    <div style="margin-bottom:20px;">
+                        <label for="prenom">Prénom :</label>
+                        <input type="text" id="prenom" name="prenom" required class="input-style" />
+                    </div>
+                    <div style="margin-bottom:20px;">
+                        <label for="nom">Nom :</label>
+                        <input type="text" id="nom" name="nom" required class="input-style" />
+                    </div>
+                    <div style="margin-bottom:20px;">
+                        <label for="username">Nom d'utilisateur :</label>
+                        <input type="text" id="username" name="username" required class="input-style" readonly />
+                    </div>
+                    <div style="margin-bottom:20px;">
+                        <label for="photo">Photo de profil :</label><br>
+                        <input type="file" id="photo" name="profilePic" accept="image/*" class="input-style" />
+                        <input type="hidden" id="oldProfilePicPath" name="oldProfilePicPath" />
+                        <br>
+                        <img id="photo-preview" src="plavatar.png" alt="Aperçu" style="width:80px;height:80px;border-radius:50%;margin-top:10px;object-fit:cover;">
+                    </div>
+                    <button type="submit" class="cta-button">Enregistrer les modifications</button>
+                </form>
+                <div id="modif-result" style="margin-top:20px;text-align:center;"></div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+    <script>
+    // Récupère l'utilisateur connecté depuis sessionStorage (après login)
+    function getCurrentUser() {
+        const userString = sessionStorage.getItem('user');
+        if (!userString) return null;
+        try {
+            return JSON.parse(userString);
+        } catch {
+            return null;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const user = getCurrentUser();
+        if (!user) {
+            document.querySelector('.certification-content').innerHTML = "<p style='color:red;'>Aucun utilisateur connecté.</p>";
+            return;
+        }
+        document.getElementById('prenom').value = user.prenom || '';
+        document.getElementById('nom').value = user.nom || '';
+        document.getElementById('username').value = user.username || '';
+        document.getElementById('oldProfilePicPath').value = user.profilePicPath || 'plavatar.png';
+        document.getElementById('photo-preview').src = user.profilePicPath || 'plavatar.png';
+
+        // Prévisualisation de la photo de profil
+        const photoInput = document.getElementById('photo');
+        const photoPreview = document.getElementById('photo-preview');
+        if(photoInput) {
+            photoInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if(file) {
+                    const reader = new FileReader();
+                    reader.onload = function(ev) {
+                        photoPreview.src = ev.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        // Soumission du formulaire
+        const form = document.getElementById('modif-compte-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            fetch('/update-profile', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    document.getElementById('modif-result').textContent = "Modifications enregistrées !";
+                    // Mettre à jour sessionStorage
+                    user.prenom = form.prenom.value;
+                    user.nom = form.nom.value;
+                    user.profilePicPath = data.profilePicPath;
+                    sessionStorage.setItem('user', JSON.stringify(user));
+                    document.getElementById('photo-preview').src = data.profilePicPath;
+                } else {
+                    document.getElementById('modif-result').textContent = data.message || "Erreur lors de la modification.";
+                }
+            })
+            .catch(() => {
+                document.getElementById('modif-result').textContent = "Erreur lors de la modification.";
+            });
+        });
+    });
+    </script>
+</body>
+</html>

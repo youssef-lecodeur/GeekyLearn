@@ -1,0 +1,622 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* SUPPRIME cette ligne : background-color: #181f2a; */
+    color: white;
+    margin: 0;
+    padding: 10px;
+}
+.elementTelechargeable {
+    background-color: #f0f0f0;
+    border: 2px solid black;
+    padding: 10px 10px 10px 10px;
+    margin: 30px;
+    font-size: 17px;
+    border-radius: 5px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.elementTelechargeable button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    align-items: end;
+    font-size: 20px;
+}
+.elementTelechargeable button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+a {
+    color: #1a73e8; /* Link color */
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    padding: 0;
+    margin: 0;
+    width: 175px;
+    height: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+nav ul li:hover > ul {
+    display: block;
+}
+
+/* Style pour mobile */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column; /* Affichage vertical */
+        flex-wrap: wrap; /* Permettre aux éléments de passer à la ligne */
+    }
+
+    nav ul li {
+        margin-bottom: 10px; /* Espacement entre les éléments */
+        width: 100%; /* Occuper toute la largeur */
+        position: relative; /* Position relative pour le menu déroulant */
+    }
+
+    nav ul li ul {
+        position: absolute; /* Position absolute pour le menu déroulant */
+        top: 100%; /* Position en dessous de l'élément parent */
+        left: 0; /* Position à gauche de l'élément parent */
+    }
+
+    nav ul li ul li { /* Style pour les éléments du menu déroulant sur mobile */
+        width: auto; /* Réinitialiser la largeur */
+        text-align: left; /* Réinitialiser l'alignement */
+    }
+
+    /* Optionnel: masquer le menu déroulant par défaut sur mobile et l'afficher avec un bouton */
+    /* nav ul li ul {
+        display: none;
+    }
+
+    nav ul li:focus-within > ul,
+    nav ul li:hover > ul {
+        display: block;
+    } */
+
+    .elementTelechargeable button {
+        display: block; /* Afficher le bouton sur une nouvelle ligne */
+        margin-top: 10px; /* Ajouter un espacement */
+    }
+}
+
+nav ul li ul li {
+    padding: 12px 2px;
+    text-decoration: none;
+    display: flex;
+    color: white;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+nav ul li ul li:hover {
+    background-color: #ddd;
+}
+
+nav ul li ul li a { /* Ajout de cette règle */
+    background-color: transparent;
+}
+
+h1 {
+    margin-left: 20px;
+}
+
+/* Style pour la modale */
+.modal {
+    display: none; /* Caché par défaut */
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    position: relative;
+    border-radius: 8px;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Import d'une police fiable depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: white;
+}
+
+/* Style pour les nouvelles sections de la page d'accueil */
+main {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 50px 0;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+.hero {
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.8em;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    color: white;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.2em;
+    margin-bottom: 40px;
+}
+
+.features-grid, .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.feature-item, .course-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.course-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.certification {
+    background-color: #f4f8ff;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.certification-content ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.certification-content li {
+    margin-bottom: 10px;
+}
+
+.final-cta {
+    text-align: center;
+}
+
+/*
+--- STYLES POUR LE TABLEAU DE BORD ---
+*/
+
+.dashboard-main {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.dashboard-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.welcome-message {
+    margin: 5px 0 0;
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background-color: #181f2a;
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.stat-number {
+    font-size: 3em;
+    font-weight: bold;
+    color: #007BFF;
+}
+
+.stat-label {
+    margin: 5px 0 0;
+    color: white;
+    font-size: 1.1em;
+}
+
+.my-courses h2, .quick-actions h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.course-list {
+    display: grid;
+    gap: 20px;
+}
+
+.course-item {
+    background-color: #181f2a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 20px;
+}
+
+.course-item h3 {
+    margin: 0;
+}
+
+.progress-bar-container {
+    background-color: #e9ecef;
+    border-radius: 20px;
+    height: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    background-color: #28a745;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.progress-text {
+    font-size: 0.9em;
+    color: white;
+    grid-column: 1; /* Se place sous le titre */
+}
+
+.course-item .cta-button {
+    grid-column: 2;
+    grid-row: 1 / span 2; /* S'étend sur deux rangées */
+    margin: 0;
+}
+
+.quick-actions {
+    margin-top: 40px;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.action-card {
+    background-color: #181f2a;
+    border: 1px solid #dee2e6;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    border-color: #007BFF;
+}
+
+#navbar-profile-pic {
+    border-radius: 50%; /* Rend l'image ronde */
+    object-fit: cover;   /* Empêche l'image d'être déformée */
+}
+/* Couleur principale du fond */
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #fff; /* Texte blanc */
+    background-color: #181f2a; /* Bleu foncé inspiré du logo */
+}
+
+/* Fond bleu foncé pour toutes les sections */
+main, section, .modal-content, .dashboard-header, .certification {
+    background-color: #181f2a !important;
+    color: #fff !important;
+}
+
+/* Cartes de formation et éléments */
+.course-card, .feature-item {
+    background-color: #222a38 !important;
+    color: #fff !important;
+    border: 1px solid #2c3550;
+}
+
+/* Navbar */
+nav, #navbar {
+    background-color: #181f2a !important;
+    color: #fff !important;
+}
+
+/* Boutons */
+.cta-button, .elementTelechargeable button {
+    background-color: #ff9900;
+    color: #181f2a;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover, .elementTelechargeable button:hover {
+    background-color: #e67c00;
+    color: #fff;
+}
+
+/* Liens */
+a {
+    color: #ff9900;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    color: #ffd580;
+}
+
+/* Inputs et textarea ergonomiques */
+input, textarea, select {
+    background-color: #222a38;
+    color: #fff;
+    border: 1px solid #2c3550;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+label {
+    color: #ffd580;
+    font-weight: bold;
+}
+
+/* Modale */
+.modal-content {
+    background-color: #222a38 !important;
+    color: #fff !important;
+    border: 1px solid #2c3550;
+}
+
+/* Pour les titres */
+h1, h2, h3, h4 {
+    color: #ffd580;
+}
+
+/* Pour les messages de confirmation/erreur */
+#edit-account-message {
+    color: #ff9900;
+    font-weight: bold;
+}
+
+/* Pour le tableau de bord */
+.dashboard-header {
+    background: linear-gradient(135deg, #181f2a 0%, #222a38 100%);
+    color: #ffd580;
+}
+
+/* Pour les listes */
+ul, li {
+    color: #fff;
+}
+
+/* Pour les coordonnées */
+section div {
+    color: #fff;
+}
+
+/* Pour le responsive, gardez le fond bleu foncé */
+@media (max-width: 600px) {
+    body, main, section, .course-card, .feature-item, .modal-content {
+        background-color: #181f2a !important;
+        color: #fff !important;
+    }
+}
+
+.hero, .hero-content {
+    background-color: transparent !important;
+    color: #ffd580 !important;
+    box-shadow: none !important;
+}
+
+/* Mode sombre (par défaut) */
+body.theme-sombre {
+  background: #181f2a;
+  color: #fff;
+}
+body.theme-sombre main,
+body.theme-sombre section,
+body.theme-sombre .courses-grid,
+body.theme-sombre .features-grid,
+body.theme-sombre .course-card,
+body.theme-sombre .feature-item,
+body.theme-sombre .modal-content,
+body.theme-sombre .dashboard-header,
+body.theme-sombre .certification {
+    background-color: #181f2a !important;
+    color: #fff !important;
+    border-color: #222a38 !important;
+}
+body.theme-sombre .course-card,
+body.theme-sombre .feature-item {
+    background-color: #222a38 !important;
+    color: #fff !important;
+    border: 1px solid #2c3550 !important;
+}
+
+body.theme-sombre h1, 
+body.theme-sombre h2, 
+body.theme-sombre h3, 
+body.theme-sombre h4 {
+    color: #ffd580 !important;
+}
+
+body.theme-sombre .cta-button, 
+body.theme-sombre .elementTelechargeable button {
+    background-color: #ff9900 !important;
+    color: #181f2a !important;
+}
+
+body.theme-sombre .cta-button:hover, 
+body.theme-sombre .elementTelechargeable button:hover {
+    background-color: #e67c00 !important;
+    color: #fff !important;
+}
+
+/* --- Thème clair --- */
+body.theme-clair,
+body.theme-clair main,
+body.theme-clair section,
+body.theme-clair .course-card {
+    background: #fff !important;
+    color: #181f2a !important;
+}
+
+body.theme-clair .course-card,
+body.theme-clair .feature-item {
+    background-color: #f9f9f9 !important;
+    color: #181f2a !important;
+    border: 1px solid #ddd;
+}
+
+body.theme-clair h1, 
+body.theme-clair h2, 
+body.theme-clair h3, 
+body.theme-clair h4 {
+    color: #ff9900 !important;
+}
+
+body.theme-clair .cta-button, 
+body.theme-clair .elementTelechargeable button {
+    background-color: #007BFF !important;
+    color: #fff !important;
+}
+
+body.theme-clair .cta-button:hover, 
+body.theme-clair .elementTelechargeable button:hover {
+    background-color: #0056b3 !important;
+    color: #fff !important;
+}
+
+body.theme-sombre {
+    background-color: #181f2a !important;
+    color: #fff !important;
+}
+
+body.theme-clair {
+    background-color: #fff !important;
+    color: #181f2a !important;
+}
+
+main, section, .course-card {
+    background: transparent !important;
+    color: inherit !important;
+}
+
+body.theme-sombre * {
+    background-color: #181f2a !important;
+    color: #fff !important;
+}
+
+body.theme-clair * {
+    background-color: #fff !important;
+    color: #181f2a !important;
+}
+
+#menu-arrow {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
